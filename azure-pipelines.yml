@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pool:
+  name: group_agrent
+
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/parent_module'
+    backendServiceArm: 'raja'
+    backendAzureRmStorageAccountName: 'storageassig1912'
+    backendAzureRmContainerName: 'blobcon'
+    backendAzureRmKey: 'ajay.tfstate'
+
+
+    
